@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "./services/useFetch";
 import Spinner from "./Spinner";
 import PageNotFound from "./PageNotFound";
 
-const Detail = () => {
+const Detail = ({ addToCart }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const [sku, setSku] = useState("");
   const { data: product, loading, error } = useFetch("products/" + id);
+
+  const handleChange = (e) => {
+    setSku(e.target.value);
+  };
 
   if (loading) return <Spinner />;
   if (!product) return <PageNotFound />;
@@ -19,8 +23,23 @@ const Detail = () => {
       <h1>{product.name}</h1>
       <p>{product.description}</p>
       <p id="price">{product.price}</p>
+      <select id="size" value={sku} onChange={handleChange}>
+        <option value="">What size?</option>
+        {product.skus.map((s) => (
+          <option key={s.sku} value={s.sku}>
+            {s.size}
+          </option>
+        ))}
+      </select>
       <p>
-        <button className="btn btn-priamry" onClick={() => navigate("/cart")}>
+        <button
+          disabled={!sku}
+          className="btn btn-priamry"
+          onClick={() => {
+            navigate("/cart");
+            addToCart(id, sku);
+          }}
+        >
           Add to cart
         </button>
       </p>
