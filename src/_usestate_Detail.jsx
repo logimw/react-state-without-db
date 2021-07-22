@@ -4,7 +4,7 @@ import useFetch from "./services/useFetch";
 import Spinner from "./Spinner";
 import PageNotFound from "./PageNotFound";
 
-const Detail = ({ dispatch }) => {
+const Detail = ({ addToCart }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [sku, setSku] = useState("");
@@ -37,7 +37,7 @@ const Detail = ({ dispatch }) => {
           className="btn btn-priamry"
           onClick={() => {
             navigate("/cart");
-            dispatch({ type: "add", id, sku });
+            addToCart(id, sku);
           }}
         >
           Add to cart
