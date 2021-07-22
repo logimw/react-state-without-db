@@ -69,6 +69,11 @@
       "city": "",
       "country": "United Kingdom",
       "id": 2
+    },
+    {
+      "city": "Zamość",
+      "country": "USA",
+      "id": 3
     }
   ]
 }
