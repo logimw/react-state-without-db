@@ -79,6 +79,16 @@
       "city": "Ddd",
       "country": "India",
       "id": 4
+    },
+    {
+      "city": "Kraków",
+      "country": "China",
+      "id": 5
+    },
+    {
+      "city": "Włodawa",
+      "country": "India",
+      "id": 6
     }
   ]
 }
